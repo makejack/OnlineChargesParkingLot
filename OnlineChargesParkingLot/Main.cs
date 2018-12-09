@@ -12,6 +12,9 @@ using LogHelper;
 
 namespace OnlineChargesParkingLot
 {
+    /// <summary>
+    /// 这是一个测试
+    /// </summary>
     public partial class Main : Form
     {
         private Factory m_CameraFactory;
