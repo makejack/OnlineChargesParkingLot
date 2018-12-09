@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Camera;
 using Camera.Model;
 using LogHelper;
+using OnlineChargesParkingLot.Model;
 
 namespace OnlineChargesParkingLot
 {
@@ -16,6 +17,8 @@ namespace OnlineChargesParkingLot
     {
         private Factory m_CameraFactory;
 
+        private List<CameraModel> m_Cameras = new List<CameraModel>();
+        
         public Main()
         {
             InitializeComponent();
@@ -50,14 +53,15 @@ namespace OnlineChargesParkingLot
             }
         }
 
-        private void FindCamera(object sender , CameraEventArgs e)
+        private void FindCamera(object sender, CameraEventArgs e)
         {
-            
+            CameraModel camera = new CameraModel(e.Brand, e.IpAddress, e.Port);
+            m_Cameras.Add(camera);
         }
 
         private void PlateReceived(object sender, PlateEventArgs e)
         {
-            
+
         }
     }
 }

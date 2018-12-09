@@ -56,6 +56,7 @@
     <Compile Include="ChargesModes\ParkingTimeCharge.cs" />
     <Compile Include="Interface\ICharges.cs" />
     <Compile Include="Interface\IOpenMode.cs" />
+    <Compile Include="Model\CameraModel.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>

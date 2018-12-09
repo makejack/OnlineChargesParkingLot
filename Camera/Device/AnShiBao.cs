@@ -173,7 +173,7 @@ namespace Camera.Device
                         }
 
                         int cameraHwnd = Common.Default.CameraIpToHandle(ip);
-                        PlateEventArgs info = new PlateEventArgs(cameraHwnd, ip, strLicensePlateNumber, licensePlateType, licensePlateColor, panoramaImage, vehicleImage);
+                        PlateEventArgs info = new PlateEventArgs(cameraHwnd, ip, strLicensePlateNumber, licensePlateType, licensePlateColor, panoramaImage, vehicleImage, date);
                         Common.Default.ExecutePlateReceived(this, info);
                     }
                 }

@@ -12,7 +12,7 @@ namespace Camera
     public class Factory
     {
 
-        private Dictionary<string, ICamera> m_dicContainer = null;
+        private Dictionary<string, ICamera> m_cameraContainer = null;
 
         public string ImagePath
         {
@@ -34,7 +34,7 @@ namespace Camera
 
         private void Initialise()
         {
-            m_dicContainer = new Dictionary<string, ICamera>();
+            m_cameraContainer = new Dictionary<string, ICamera>();
 
             Type baseType = typeof(ICamera);
             List<Assembly> assemblies = AppDomain.CurrentDomain.GetAssemblies().ToList();
@@ -43,13 +43,13 @@ namespace Camera
             foreach (Type item in allTypes)
             {
                 ICamera camera = (ICamera)Activator.CreateInstance(item);
-                m_dicContainer.Add(item.Name, camera);
+                m_cameraContainer.Add(item.Name, camera);
             }
         }
 
         public void UnInit()
         {
-            foreach (KeyValuePair<string, ICamera> item in m_dicContainer)
+            foreach (KeyValuePair<string, ICamera> item in m_cameraContainer)
             {
                 item.Value.UnInit();
             }
@@ -57,7 +57,7 @@ namespace Camera
 
         public void FindDevice()
         {
-            foreach (KeyValuePair<string, ICamera> item in m_dicContainer)
+            foreach (KeyValuePair<string, ICamera> item in m_cameraContainer)
             {
                 item.Value.FindCamera();
             }
@@ -65,7 +65,7 @@ namespace Camera
 
         public bool Connection(ConnectionConfiguration configuration)
         {
-            ICamera camera = m_dicContainer[configuration.Brand];
+            ICamera camera = m_cameraContainer[configuration.Brand];
             bool ret = camera.Connection(configuration);
             return ret;
         }
@@ -73,14 +73,14 @@ namespace Camera
         public void Close(string ip)
         {
             ConnectionConfiguration configuration = Common.Default.GetConfiguration(ip);
-            ICamera camera = m_dicContainer[configuration.Brand];
+            ICamera camera = m_cameraContainer[configuration.Brand];
             camera.Close(configuration);
         }
 
         public bool ManualCapture(string ip, string strFullPath)
         {
             ConnectionConfiguration configuration = Common.Default.GetConfiguration(ip);
-            ICamera camera = m_dicContainer[configuration.Brand];
+            ICamera camera = m_cameraContainer[configuration.Brand];
             bool ret = camera.ManualCapture(configuration, strFullPath);
             return ret;
         }

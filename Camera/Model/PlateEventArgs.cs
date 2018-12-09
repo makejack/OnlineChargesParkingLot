@@ -76,7 +76,7 @@ namespace Camera.Model
 
     public class PlateEventArgs : EventArgs
     {
-        public PlateEventArgs(int handle, string ip, string licensePlateNumber, LicensePlateTypes licensePlateType, Color licensePlateColor, Image panoramaImage, Image vehicleImage)
+        public PlateEventArgs(int handle, string ip, string licensePlateNumber, LicensePlateTypes licensePlateType, Color licensePlateColor, Image panoramaImage, Image vehicleImage, DateTime identificationTime)
         {
             Handle = handle;
             IP = ip;
@@ -85,6 +85,7 @@ namespace Camera.Model
             LicensePlateColor = licensePlateColor;
             PanoramaImage = panoramaImage;
             VehicleImage = vehicleImage;
+            IdentificationTime = identificationTime;
         }
 
 
@@ -122,5 +123,10 @@ namespace Camera.Model
         /// 车牌的图像
         /// </summary>
         public Image VehicleImage { get; }
+
+        /// <summary>
+        /// ykkl的时间
+        /// </summary>
+        public DateTime IdentificationTime { get; }
     }
 }

@@ -145,7 +145,7 @@ namespace Camera.Device
                 Image vehicleImage = GetCameraImage(tPicInfo.ptVehiclePicBuff, (int)tPicInfo.uiVehiclePicLen, vehiclePath);
 
                 string ip = Common.Default.CameraHandleToIp(tHandle);
-                PlateEventArgs info = new PlateEventArgs(tHandle, ip, strLicensePlateNumber, licensePlateType, licensePlateColor, panoramaImage, vehicleImage);
+                PlateEventArgs info = new PlateEventArgs(tHandle, ip, strLicensePlateNumber, licensePlateType, licensePlateColor, panoramaImage, vehicleImage, date);
 
                 Common.Default.ExecutePlateReceived(this, info);
             }

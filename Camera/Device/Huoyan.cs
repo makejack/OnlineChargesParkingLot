@@ -140,7 +140,7 @@ namespace Camera.Device
                     Image vehicleImage = new Bitmap(vehiclePath);
 
                     string ip = Common.Default.CameraHandleToIp(handle);
-                    PlateEventArgs info = new PlateEventArgs(handle, ip, strLicensePlateNumber, licensePlateType, licensePlateColor, panoramaImage, vehicleImage);
+                    PlateEventArgs info = new PlateEventArgs(handle, ip, strLicensePlateNumber, licensePlateType, licensePlateColor, panoramaImage, vehicleImage, date);
                     Common.Default.ExecutePlateReceived(this, info);
                 }
             }

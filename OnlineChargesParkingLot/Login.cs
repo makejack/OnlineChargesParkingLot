@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Model;
+using BLL.Container;
 
 namespace OnlineChargesParkingLot
 {
@@ -59,6 +61,20 @@ namespace OnlineChargesParkingLot
 
         private void Login_Click(object sender, EventArgs e)
         {
+            string strAccount = tbAccount.Text;
+            string strPassword = tbPassword.Text;
+
+            if (strAccount.Length == 0)
+            {
+                MessageBox.Show("帐号不能为空", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            if (strPassword.Length == 0)
+            {
+                MessageBox.Show("密码不能为空", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             this.DialogResult = DialogResult.OK;
         }
     }

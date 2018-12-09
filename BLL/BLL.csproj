@@ -40,11 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseService.cs" />
     <Compile Include="ChargeRecordService.cs" />
+    <Compile Include="EnteranceRecordService.cs" />
+    <Compile Include="OwnerDelayRecordService.cs" />
     <Compile Include="Container\Container.cs" />
     <Compile Include="Interface\IBaseService.cs" />
     <Compile Include="Interface\IChargeRecordService.cs" />
     <Compile Include="Interface\IDependency.cs" />
+    <Compile Include="Interface\IEnteranceRecordService.cs" />
+    <Compile Include="Interface\IOwnerDelayRecordService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
