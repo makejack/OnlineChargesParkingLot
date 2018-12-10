@@ -52,6 +52,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CameraController.cs" />
     <Compile Include="ChargesModes\NoCharge.cs" />
     <Compile Include="ChargesModes\ParkingTimeCharge.cs" />
     <Compile Include="Doors\Enter.cs" />

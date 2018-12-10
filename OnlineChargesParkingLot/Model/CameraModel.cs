@@ -20,6 +20,14 @@ namespace OnlineChargesParkingLot.Model
 
         public bool IsConnection { get; set; }
 
+        public Directions Direction { get; set; }
+
         public IDoor Door { get; set; }
+    }
+
+    public enum Directions
+    {
+        Enter = 0,
+        Exit
     }
 }

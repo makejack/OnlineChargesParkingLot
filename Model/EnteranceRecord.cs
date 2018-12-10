@@ -11,6 +11,13 @@ namespace Model
     public class EnteranceRecord
     {
 
+        public EnteranceRecord(string plateNumber, DateTime entranceTime, int vehicleType)
+        {
+            this.PlateNumber = plateNumber;
+            this.EntranceTime = entranceTime;
+            this.VehicleType = vehicleType;
+        }
+
         public int ID { get; set; }
 
         public string PlateNumber { get; set; }

@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Camera.Interface;
 using Camera.SDK;
-using Camera.Model;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.IO;

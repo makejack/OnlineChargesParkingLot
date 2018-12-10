@@ -7,10 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Model;
-using Camera;
-using Camera.Model;
 using LogHelper;
-using OnlineChargesParkingLot.Model;
 
 namespace OnlineChargesParkingLot
 {
@@ -24,6 +21,8 @@ namespace OnlineChargesParkingLot
         /// </summary>
         private AdminInfo m_AdminInfo;
 
+        private CameraController m_Camera;
+
 
         public Main(AdminInfo adminInfo)
         {
@@ -34,10 +33,20 @@ namespace OnlineChargesParkingLot
 
         private void Main_Load(object sender, EventArgs e)
         {
-
+            m_Camera = new CameraController(EnterDoor, ExitDoor);
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+        }
+
+        private void ExitDoor()
+        {
+
+        }
+
+        private void EnterDoor()
         {
 
         }

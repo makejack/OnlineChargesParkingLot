@@ -47,5 +47,14 @@ namespace DAL
                 connection.Execute(sql);
             }
         }
+
+        public EnteranceRecord Query(string licensePlateNumber)
+        {
+            string sql = "SELECT * FROM CBEnteranceRecrd WHERE PlateNumber = @PlateNumber ;";
+            using (IDbConnection connection = DbConnectionFactory.Create())
+            {
+                connection.Query<EnteranceRecord>(sql, new { PlateNumber = licensePlateNumber }).FirstOrDefault();
+            }
+        }
     }
 }

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
-using Camera.Model;
 
 namespace Camera
 {

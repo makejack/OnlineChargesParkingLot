@@ -1,6 +1,6 @@
 using System;
 
-namespace Camera.Model
+namespace Camera
 {
     public class CameraEventArgs : EventArgs
     {

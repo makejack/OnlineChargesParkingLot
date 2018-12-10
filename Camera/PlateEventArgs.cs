@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace Camera.Model
+namespace Camera
 {
     public enum LicensePlateTypes
     {
@@ -125,7 +125,7 @@ namespace Camera.Model
         public Image VehicleImage { get; }
 
         /// <summary>
-        /// ykkl的时间
+        /// 识别的时间
         /// </summary>
         public DateTime IdentificationTime { get; }
     }

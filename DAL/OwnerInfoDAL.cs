@@ -76,5 +76,14 @@ namespace DAL
                 connection.Execute(sql);
             }
         }
+
+        public OwnerInfo Query(string licensePlateNumber)
+        {
+            string sql = "SELECT * FROM CBLprUserInfo where UserPlate = @UserPlate ;";
+            using (IDbConnection connection = DbConnectionFactory.Create())
+            {
+                connection.Query<OwnerInfo>(sql, new { UserPlate = licensePlateNumber }).FirstOrDefault();
+            }
+        }
     }
 }

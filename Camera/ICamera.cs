@@ -1,7 +1,6 @@
 ﻿using System;
-using Camera.Model;
 
-namespace Camera.Interface
+namespace Camera
 {
 
     public delegate void FindCameraHandle(object sender, CameraEventArgs e);
