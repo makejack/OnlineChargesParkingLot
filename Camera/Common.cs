@@ -6,11 +6,6 @@ using Camera.Model;
 
 namespace Camera
 {
-
-    public delegate void FindCameraHandle(object sender, CameraEventArgs e);
-
-    public delegate void PlateReceivedHandle(object sender, PlateEventArgs info);
-
     internal class Common
     {
         private static Common m_Default = null;
@@ -30,30 +25,6 @@ namespace Camera
         private List<ConnectionConfiguration> ConnCameras = new List<ConnectionConfiguration>();
 
         public string ImagePath { get; set; }
-
-        private event FindCameraHandle m_FindCameraEvent;
-        public event FindCameraHandle FindCameraEvent
-        {
-            add { m_FindCameraEvent += value; }
-            remove { m_FindCameraEvent -= value; }
-        }
-        
-        public void ExecuteFindCamera(object sender, CameraEventArgs e)
-        {
-            m_FindCameraEvent?.Invoke(sender, e);
-        }
-
-        private event PlateReceivedHandle m_PlateReceivedEvent;
-        public event PlateReceivedHandle PlateReceivedEvent
-        {
-            add { m_PlateReceivedEvent += value; }
-            remove { m_PlateReceivedEvent -= value; }
-        }
-
-        public void ExecutePlateReceived(object sender, PlateEventArgs e)
-        {
-            m_PlateReceivedEvent?.Invoke(sender, e);
-        }
 
         public void Add(ConnectionConfiguration configuration)
         {

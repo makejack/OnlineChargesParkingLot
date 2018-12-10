@@ -26,12 +26,15 @@ namespace Camera.Device
             HuoYanSDK.VzLPRClient_Setup();
         }
 
+        public event FindCameraHandle FindCameraChange;
+        public event PlateReceivedHandle PlateReceivedChange;
+
         public void UnInit()
         {
             HuoYanSDK.VzLPRClient_Cleanup();
         }
 
-        public void Close(ConnectionConfiguration configuration)
+        public bool Close(ConnectionConfiguration configuration)
         {
             if (configuration.CameraHwnd != (int)IntPtr.Zero)
             {
@@ -41,9 +44,10 @@ namespace Camera.Device
                     HuoYanSDK.VzLPRClient_SetPlateInfoCallBack(configuration.CameraHwnd, null, IntPtr.Zero, 1);
 
                     HuoYanSDK.VzLPRClient_Close(configuration.CameraHwnd);
-                    Common.Default.Del(configuration);
+                    return true;
                 }
             }
+            return false;
         }
 
         public bool Connection(ConnectionConfiguration configuration)
@@ -59,8 +63,6 @@ namespace Camera.Device
                     HuoYanSDK.VzLPRClient_SetPlateInfoCallBack(m_hLPRClinet, CameraPlateReceivedCallBack, IntPtr.Zero, 1);
 
                     configuration.PlayHwnd = m_hPlay;
-                    Common.Default.Add(configuration);
-
                     return true;
                 }
                 else
@@ -83,7 +85,7 @@ namespace Camera.Device
         private void FindCamera(string pStrDevName, string pStrIPAddr, ushort usPort1, ushort usPort2, uint SL, uint SH, IntPtr pUserData)
         {
             CameraEventArgs camera = new CameraEventArgs(pStrIPAddr, usPort1, this.GetType().Name);
-            Common.Default.ExecuteFindCamera(this, camera);
+            FindCameraChange(this, camera);
         }
 
         private int PlateReceived(int handle, IntPtr pUserData, IntPtr pResult, uint uNumPlates, HuoYanSDK.VZ_LPRC_RESULT_TYPE eResultType, IntPtr pImgFull, IntPtr pImgPlateClip)
@@ -141,7 +143,7 @@ namespace Camera.Device
 
                     string ip = Common.Default.CameraHandleToIp(handle);
                     PlateEventArgs info = new PlateEventArgs(handle, ip, strLicensePlateNumber, licensePlateType, licensePlateColor, panoramaImage, vehicleImage, date);
-                    Common.Default.ExecutePlateReceived(this, info);
+                    PlateReceivedChange(this, info);
                 }
             }
             catch (Exception ex)

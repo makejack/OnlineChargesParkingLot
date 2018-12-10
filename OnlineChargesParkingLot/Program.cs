@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Model;
 
 namespace OnlineChargesParkingLot
 {
@@ -26,7 +27,8 @@ namespace OnlineChargesParkingLot
             {
                 if (login.ShowDialog() == DialogResult.OK)
                 {
-                    Application.Run(new Main());
+                    AdminInfo adminInfo = login.Tag as AdminInfo;
+                    Application.Run(new Main(adminInfo));
                 }
             }
         }

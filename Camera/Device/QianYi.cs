@@ -32,17 +32,20 @@ namespace Camera.Device
             }
         }
 
+        public event FindCameraHandle FindCameraChange;
+        public event PlateReceivedHandle PlateReceivedChange;
+
         public void UnInit()
         {
             QianYiSDK.Net_UNinit();
         }
 
-        public void Close(ConnectionConfiguration configuration)
+        public bool Close(ConnectionConfiguration configuration)
         {
             QianYiSDK.Net_StopVideo(configuration.CameraHwnd);
             QianYiSDK.Net_DisConnCamera(configuration.CameraHwnd);
             QianYiSDK.Net_DelCamera(configuration.CameraHwnd);
-            Common.Default.Del(configuration);
+            return true;
         }
 
         public bool Connection(ConnectionConfiguration configuration)
@@ -57,9 +60,6 @@ namespace Camera.Device
                     if (iRet == 0)
                     {
                         configuration.CameraHwnd = cameraHwnd;
-
-                        Common.Default.Add(configuration);
-
                         return true;
                     }
                     else
@@ -88,7 +88,7 @@ namespace Camera.Device
         private int FindCamera(ref QianYiSDK.T_RcvMsg ptFindDevice, IntPtr obj)
         {
             CameraEventArgs camera = new CameraEventArgs(QianYiSDK.IntToIp(QianYiSDK.Reverse_uint(ptFindDevice.tNetSetup.uiIPAddress)), 30000, this.GetType().Name);
-            Common.Default.ExecuteFindCamera(this, camera);
+            FindCameraChange(this, camera);
 
             return 0;
         }
@@ -147,7 +147,7 @@ namespace Camera.Device
                 string ip = Common.Default.CameraHandleToIp(tHandle);
                 PlateEventArgs info = new PlateEventArgs(tHandle, ip, strLicensePlateNumber, licensePlateType, licensePlateColor, panoramaImage, vehicleImage, date);
 
-                Common.Default.ExecutePlateReceived(this, info);
+                PlateReceivedChange(this, info);
             }
             catch (Exception ex)
             {

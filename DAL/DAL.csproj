@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminInfoDAL.cs" />
     <Compile Include="ChargeRecordDAL.cs" />
     <Compile Include="Container\Container.cs" />
     <Compile Include="DbConnectionFactory.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="OwnerDelayRecordDAL.cs" />
     <Compile Include="OwnerInfoDAL.cs" />
     <Compile Include="EnteranceRecordDAL.cs" />
+    <Compile Include="Interface\IAdminInfoDAL.cs" />
     <Compile Include="Interface\IBaseDAL.cs" />
     <Compile Include="Interface\IChargeRecordDAL.cs" />
     <Compile Include="Interface\IDependency.cs" />

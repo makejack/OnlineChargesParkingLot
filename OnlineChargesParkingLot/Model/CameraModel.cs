@@ -1,4 +1,5 @@
 using System;
+using OnlineChargesParkingLot.Interface;
 
 namespace OnlineChargesParkingLot.Model
 {
@@ -16,5 +17,9 @@ namespace OnlineChargesParkingLot.Model
         public string IpAddress { get; set; }
 
         public ushort Port { get; set; }
+
+        public bool IsConnection { get; set; }
+
+        public IDoor Door { get; set; }
     }
 }

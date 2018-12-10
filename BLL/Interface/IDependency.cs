@@ -1,6 +1,6 @@
 namespace BLL.Interface
 {
-    public interface IDependency
+    internal interface IDependency
     {
         
     }

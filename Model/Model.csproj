@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminInfo.cs" />
     <Compile Include="ChargeRecord.cs" />
     <Compile Include="EnteranceRecord.cs" />
     <Compile Include="OwnerDelayRecord.cs" />

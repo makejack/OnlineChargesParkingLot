@@ -1,6 +1,6 @@
 namespace DAL.Interface
 {
-    public interface IDependency
+    internal interface IDependency
     {
          
     }

@@ -8,7 +8,6 @@ using Camera.Interface;
 
 namespace Camera
 {
-
     public class Factory
     {
 
@@ -67,6 +66,10 @@ namespace Camera
         {
             ICamera camera = m_cameraContainer[configuration.Brand];
             bool ret = camera.Connection(configuration);
+            if (ret)
+            {
+                Common.Default.Add(configuration);
+            }
             return ret;
         }
 
@@ -75,6 +78,8 @@ namespace Camera
             ConnectionConfiguration configuration = Common.Default.GetConfiguration(ip);
             ICamera camera = m_cameraContainer[configuration.Brand];
             camera.Close(configuration);
+
+            Common.Default.Del(configuration);
         }
 
         public bool ManualCapture(string ip, string strFullPath)
@@ -87,22 +92,34 @@ namespace Camera
 
         public void RegisterFind(FindCameraHandle func)
         {
-            Common.Default.FindCameraEvent += func;
+            foreach (ICamera item in m_cameraContainer.Values)
+            {
+                item.FindCameraChange += func;
+            }
         }
 
         public void UnregisterFind(FindCameraHandle func)
         {
-            Common.Default.FindCameraEvent -= func;
+            foreach (ICamera item in m_cameraContainer.Values)
+            {
+                item.FindCameraChange -= func;
+            }
         }
 
         public void RegisterReceived(PlateReceivedHandle func)
         {
-            Common.Default.PlateReceivedEvent += func;
+            foreach (ICamera item in m_cameraContainer.Values)
+            {
+                item.PlateReceivedChange += func;
+            }
         }
 
         public void UnregisterReceived(PlateReceivedHandle func)
         {
-            Common.Default.PlateReceivedEvent -= func;
+            foreach (ICamera item in m_cameraContainer.Values)
+            {
+                item.PlateReceivedChange -= func;
+            }
         }
 
     }

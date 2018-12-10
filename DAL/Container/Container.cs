@@ -14,9 +14,16 @@ namespace DAL.Container
 
         public static T Resolve<T>()
         {
-            if (container == null)
+            try
             {
-                Initialise();
+                if (container == null)
+                {
+                    Initialise();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             return container.Resolve<T>();
         }

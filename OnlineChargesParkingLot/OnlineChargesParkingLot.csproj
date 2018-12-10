@@ -54,7 +54,10 @@
   <ItemGroup>
     <Compile Include="ChargesModes\NoCharge.cs" />
     <Compile Include="ChargesModes\ParkingTimeCharge.cs" />
+    <Compile Include="Doors\Enter.cs" />
+    <Compile Include="Doors\Exit.cs" />
     <Compile Include="Interface\ICharges.cs" />
+    <Compile Include="Interface\IDoor.cs" />
     <Compile Include="Interface\IOpenMode.cs" />
     <Compile Include="Model\CameraModel.cs" />
     <Compile Include="Login.cs">

@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Model;
-using BLL.Container;
+using BLL.Interface;
+using WinFormAnimation;
 
 namespace OnlineChargesParkingLot
 {
@@ -16,6 +17,15 @@ namespace OnlineChargesParkingLot
         public Login()
         {
             InitializeComponent();
+
+            //窗体设置为透明的，启动时有一个动画效果
+            this.Opacity = 0;
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            //动画效果
+            new Animator(new Path((float)this.Opacity, 1, 250)).Play(this, "Opacity");
         }
 
         private void AccountText_Enter(object sender, EventArgs e)
@@ -74,7 +84,14 @@ namespace OnlineChargesParkingLot
                 MessageBox.Show("密码不能为空", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-
+            IAdminInfoService adminInfoService = BLL.Container.Container.Resolve<IAdminInfoService>();
+            AdminInfo adminInfo = adminInfoService.Query(strAccount, strPassword);
+            if (adminInfo == null)
+            {
+                MessageBox.Show("帐号或密码错误", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            this.Tag = adminInfo;
             this.DialogResult = DialogResult.OK;
         }
     }

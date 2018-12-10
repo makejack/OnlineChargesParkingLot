@@ -34,16 +34,18 @@ namespace Camera.Device
             }
         }
 
+        public event FindCameraHandle FindCameraChange;
+        public event PlateReceivedHandle PlateReceivedChange;
+
         public void UnInit()
         {
             AnShiBaoSDK.IPCSDK_UnInit();
         }
 
-        public void Close(ConnectionConfiguration configuration)
+        public bool Close(ConnectionConfiguration configuration)
         {
-            AnShiBaoSDK.IPCSDK_Stop_Stream(configuration.IP);
-
-            Common.Default.Del(configuration);
+            int iRet = AnShiBaoSDK.IPCSDK_Stop_Stream(configuration.IP);
+            return iRet == 0;
         }
 
         public bool Connection(ConnectionConfiguration configuration)
@@ -52,7 +54,6 @@ namespace Camera.Device
             if (cameraHwnd == 0)
             {
                 configuration.CameraHwnd = cameraHwnd;
-                Common.Default.Add(configuration);
                 return true;
             }
             return false;
@@ -80,7 +81,7 @@ namespace Camera.Device
 
                             CameraEventArgs camera = new CameraEventArgs(cameraParam.ip, cameraParam.port, this.GetType().Name);
                             //方法回调
-                            Common.Default.ExecuteFindCamera(this, camera);
+                            FindCameraChange(this, camera);
                         }
                     }
                     catch (Exception ex)
@@ -174,7 +175,7 @@ namespace Camera.Device
 
                         int cameraHwnd = Common.Default.CameraIpToHandle(ip);
                         PlateEventArgs info = new PlateEventArgs(cameraHwnd, ip, strLicensePlateNumber, licensePlateType, licensePlateColor, panoramaImage, vehicleImage, date);
-                        Common.Default.ExecutePlateReceived(this, info);
+                        PlateReceivedChange(this, info);
                     }
                 }
             }
