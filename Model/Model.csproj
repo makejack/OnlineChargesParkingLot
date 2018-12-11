@@ -45,6 +45,7 @@
     <Compile Include="EnteranceRecord.cs" />
     <Compile Include="OwnerDelayRecord.cs" />
     <Compile Include="OwnerInfo.cs" />
+    <Compile Include="ParkingLotInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

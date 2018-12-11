@@ -53,7 +53,7 @@ namespace DAL
             string sql = "SELECT * FROM CBEnteranceRecrd WHERE PlateNumber = @PlateNumber ;";
             using (IDbConnection connection = DbConnectionFactory.Create())
             {
-                connection.Query<EnteranceRecord>(sql, new { PlateNumber = licensePlateNumber }).FirstOrDefault();
+                return connection.Query<EnteranceRecord>(sql, new { PlateNumber = licensePlateNumber }).FirstOrDefault();
             }
         }
     }

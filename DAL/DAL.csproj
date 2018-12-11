@@ -62,11 +62,13 @@
     <Compile Include="OwnerDelayRecordDAL.cs" />
     <Compile Include="OwnerInfoDAL.cs" />
     <Compile Include="EnteranceRecordDAL.cs" />
+    <Compile Include="ParkingLotInfoDAL.cs" />
     <Compile Include="Interface\IAdminInfoDAL.cs" />
     <Compile Include="Interface\IBaseDAL.cs" />
     <Compile Include="Interface\IChargeRecordDAL.cs" />
     <Compile Include="Interface\IDependency.cs" />
     <Compile Include="Interface\IEnteranceRecordDAL.cs" />
+    <Compile Include="Interface\IParkingLotInfoDAL.cs" />
     <Compile Include="Interface\IOwnerInfoDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

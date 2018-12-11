@@ -52,15 +52,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CameraController.cs" />
-    <Compile Include="ChargesModes\NoCharge.cs" />
-    <Compile Include="ChargesModes\ParkingTimeCharge.cs" />
-    <Compile Include="Doors\Enter.cs" />
-    <Compile Include="Doors\Exit.cs" />
-    <Compile Include="Interface\ICharges.cs" />
-    <Compile Include="Interface\IDoor.cs" />
-    <Compile Include="Interface\IOpenMode.cs" />
-    <Compile Include="Model\CameraModel.cs" />
+    <Compile Include="DoorMode\Door.cs" />
+    <Compile Include="DoorMode\Enter.cs" />
+    <Compile Include="DoorMode\Exit.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>

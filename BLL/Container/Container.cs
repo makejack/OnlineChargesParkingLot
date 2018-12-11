@@ -10,7 +10,7 @@ namespace BLL.Container
 {
     public class Container
     {
-        public static IContainer container = null;
+        private static IContainer container = null;
 
         public static T Resolve<T>()
         {

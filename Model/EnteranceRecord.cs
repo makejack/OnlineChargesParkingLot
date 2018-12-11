@@ -10,20 +10,33 @@ namespace Model
     /// </summary>
     public class EnteranceRecord
     {
-
-        public EnteranceRecord(string plateNumber, DateTime entranceTime, int vehicleType)
+        public EnteranceRecord()
         {
-            this.PlateNumber = plateNumber;
+
+        }
+
+        public EnteranceRecord(string licensePlateNumber, DateTime entranceTime, int vehicleType)
+        {
+            this.PlateNumber = licensePlateNumber;
             this.EntranceTime = entranceTime;
             this.VehicleType = vehicleType;
         }
 
         public int ID { get; set; }
 
+        /// <summary>
+        /// 车牌号码
+        /// </summary>
         public string PlateNumber { get; set; }
 
+        /// <summary>
+        /// 进入的时间
+        /// </summary>
         public DateTime EntranceTime { get; set; }
 
+        /// <summary>
+        /// 车辆类型
+        /// </summary>
         public int VehicleType { get; set; }
     }
 }

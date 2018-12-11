@@ -49,6 +49,7 @@
     <Compile Include="EnteranceRecordService.cs" />
     <Compile Include="Interface\IOwnerInfoService.cs" />
     <Compile Include="OwnerDelayRecordService.cs" />
+    <Compile Include="ParkingLotInfoService.cs" />
     <Compile Include="Container\Container.cs" />
     <Compile Include="Interface\IAdminInfoService.cs" />
     <Compile Include="Interface\IBaseService.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Interface\IDependency.cs" />
     <Compile Include="Interface\IEnteranceRecordService.cs" />
     <Compile Include="Interface\IOwnerDelayRecordService.cs" />
+    <Compile Include="Interface\IParkingLotInfoService.cs" />
     <Compile Include="OwnerInfoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

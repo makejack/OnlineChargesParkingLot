@@ -10,7 +10,7 @@ using Model;
 
 namespace DAL
 {
-    public class OwnerDelayRecordDAL : IOwnerDelayRecordDAL
+    public class OwnerDelayRecordDAL : IOwnerDelayRecordDAL,IDependency
     {
         public int Add(OwnerDelayRecord t)
         {

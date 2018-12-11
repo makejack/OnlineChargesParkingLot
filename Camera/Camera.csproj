@@ -43,15 +43,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CameraEventArgs.cs" />
-    <Compile Include="Device\AnShiBao.cs" />
-    <Compile Include="Common.cs" />
+    <Compile Include="Device.cs" />
+    <Compile Include="Devices\AnShiBao.cs" />
     <Compile Include="ConnectionConfiguration.cs" />
-    <Compile Include="Factory.cs" />
-    <Compile Include="Device\Huoyan.cs" />
-    <Compile Include="ICamera.cs" />
+    <Compile Include="Controller.cs" />
+    <Compile Include="Devices\Huoyan.cs" />
     <Compile Include="PlateEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Device\QianYi.cs" />
+    <Compile Include="Devices\QianYi.cs" />
     <Compile Include="SDK\AnShiBaoSDK.cs" />
     <Compile Include="SDK\HuoYanSDK.cs" />
     <Compile Include="SDK\QianYiSDK.cs" />

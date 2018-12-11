@@ -82,7 +82,7 @@ namespace DAL
             string sql = "SELECT * FROM CBLprUserInfo where UserPlate = @UserPlate ;";
             using (IDbConnection connection = DbConnectionFactory.Create())
             {
-                connection.Query<OwnerInfo>(sql, new { UserPlate = licensePlateNumber }).FirstOrDefault();
+               return connection.Query<OwnerInfo>(sql, new { UserPlate = licensePlateNumber }).FirstOrDefault();
             }
         }
     }
