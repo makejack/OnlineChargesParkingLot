@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using BLL.Interface;
+using DAL.Interface;
 using Model;
 using DAL;
 
@@ -14,6 +15,12 @@ namespace BLL
         public override void SetDal()
         {
             base.Dal = new ChargeRecordDAL();
+        }
+
+        public int Query(string licensePlateNumber)
+        {
+            IChargeRecordDAL chargeRecordDAL = DAL.Container.Container.Resolve<IChargeRecordDAL>();
+            return chargeRecordDAL.Query(licensePlateNumber);
         }
     }
 }

@@ -20,6 +20,9 @@ namespace Model
 
         public DateTime StopTime { get; set; }
 
+        /// <summary>
+        /// 黑白名单 0 -> 白  1 -> 黑
+        /// </summary>
         public int UserType { get; set; }
 
         public int UserSex { get; set; }
@@ -31,6 +34,12 @@ namespace Model
         public string UserAddress { get; set; }
 
         public DateTime RegistrationTime { get; set; }
+
+
+        /// <summary>
+        /// 用户类型 0 -> 月租车辆 1 -> 固定车辆 2 -> 定距卡车辆
+        /// </summary>
+        public int PlateType { get; set; }
 
     }
 }

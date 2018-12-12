@@ -10,6 +10,8 @@ using Model;
 using BLL.Interface;
 using LogHelper;
 using Camera;
+using OnlineChargesParkingLot.ViewModel;
+using OnlineChargesParkingLot.DoorModule;
 
 namespace OnlineChargesParkingLot
 {
@@ -24,10 +26,11 @@ namespace OnlineChargesParkingLot
         /// </summary>
         private ParkingLotInfo m_ParkingLotInfo;
 
-        private Camera.Controller m_CameraController;
+        private Controller m_CameraController;
+        private List<CameraParam> m_CameraParams = new List<CameraParam>();
 
-
-        
+        private IDoor EnterDoor;
+        private IDoor ExitDoor;
 
         public Main(AdminInfo adminInfo)
         {
@@ -41,6 +44,9 @@ namespace OnlineChargesParkingLot
             //获取停车场信息
             IParkingLotInfoService parkingLotInfoService = BLL.Container.Container.Resolve<IParkingLotInfoService>();
             m_ParkingLotInfo = parkingLotInfoService.GetModels().FirstOrDefault();
+
+            EnterDoor = new Enter(m_ParkingLotInfo, EnterInfoShow);
+            ExitDoor = new Exit(m_ParkingLotInfo, ExitInfoShow);
 
             //初始化摄像机控制器
             m_CameraController = new Camera.Controller(Application.StartupPath + @"\Imgs");
@@ -58,18 +64,33 @@ namespace OnlineChargesParkingLot
 
         private void FindCamera(object sender, CameraEventArgs e)
         {
-            string ip = e.IpAddress;
-            ushort port = e.Port;
-            string brand = e.Brand;
-
-
+            CameraParam cameraParam = new CameraParam(e.IpAddress, e.Port, e.Brand);
+            m_CameraParams.Add(cameraParam);
         }
 
         private void PlateReceived(object sender, PlateEventArgs e)
         {
-            string ip = e.IP;
-            int hwnd = e.Handle;
-            string licensePlateNumber = e.LicensePlateNumber;
+            CameraParam cameraParam = m_CameraParams.Where(w => w.Ip == e.IP).FirstOrDefault();
+            IDoor door;
+            if (cameraParam.Direction == Directions.Enter)
+            {
+                door = EnterDoor;
+            }
+            else
+            {
+                door = ExitDoor;
+            }
+            door.Execute(e.LicensePlateNumber, e.LicensePlateType, e.LicensePlateColor, e.IdentificationTime);
+        }
+
+        private void EnterInfoShow()
+        {
+
+        }
+
+        private void ExitInfoShow()
+        {
+
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)

@@ -1,19 +1,27 @@
 using System;
 using System.Drawing;
+using Model;
 using Camera;
+using OnlineChargesParkingLot.OpenModule;
 
 namespace OnlineChargesParkingLot.DoorModule
 {
     public abstract class Door
     {
-        private Action CompleteCallback;
+        internal Action CompleteCallback { get; set; }
 
-        private string m_LicensePlateNumber { get; set; }
-        private DateTime m_Time { get; set; }
+        internal ParkingLotInfo ParkingLot { get; set; }
 
-        public Door(Action callback)
+        internal OpenOperating OpenOperating { get; set; }
+
+        private string m_LicensePlateNumber;
+
+        private DateTime m_Time;
+
+        public Door(ParkingLotInfo parkingLotInfo, Action callback)
         {
             this.CompleteCallback = callback;
+            this.ParkingLot = parkingLotInfo;
         }
 
         public virtual bool Compared(string licensePlatenumber, DateTime time)
@@ -35,6 +43,6 @@ namespace OnlineChargesParkingLot.DoorModule
             return false;
         }
 
-        public abstract void Execute(string licensePlateNumber, LicensePlateTypes licensePlateType, Color licensePlateColor, DateTime identificationTime, Image pImage, Image vImage);
+
     }
 }
