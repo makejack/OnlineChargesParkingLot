@@ -3,37 +3,30 @@ using System.Drawing;
 using Camera;
 using BLL.Interface;
 using Model;
+using OnlineChargesParkingLot.ViewModel;
 
 namespace OnlineChargesParkingLot.DoorModule
 {
-    public class Exit : Door,IDoor
+    public class Exit : Door, IDoor
     {
-        public Exit(ParkingLotInfo parkingLotInfo, Action callback) : base(parkingLotInfo, callback)
+        public Exit(ParkingLotInfo parkingLotInfo, Action callback)
         {
 
         }
 
-        public void Execute(string licensePlateNumber, LicensePlateTypes licensePlateType, Color licensePlateColor, DateTime identificationTime)
+        public void Execute(IdentificationInfo iInfo)
         {
-            bool ret = Compared(licensePlateNumber, identificationTime);
+            bool ret = Compared(iInfo.LicensePlateNumber, iInfo.IdentificationTime);
             if (ret)
             {
                 return;
             }
 
             IEnteranceRecordService enteranceRecordService = BLL.Container.Container.Resolve<IEnteranceRecordService>();
-            EnteranceRecord enteranceRecord = enteranceRecordService.Query(licensePlateNumber);
+            EnteranceRecord enteranceRecord = enteranceRecordService.Query(iInfo.LicensePlateNumber);
             IOwnerInfoService ownerInfoService = BLL.Container.Container.Resolve<IOwnerInfoService>();
-            OwnerInfo ownerInfo = ownerInfoService.Query(licensePlateNumber);
+            OwnerInfo ownerInfo = ownerInfoService.Query(iInfo.LicensePlateNumber);
 
-            if (enteranceRecord == null && ownerInfo == null)
-            {
-                CompleteCallback();
-            }
-            else
-            {
-
-            }
         }
     }
 }

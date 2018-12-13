@@ -4,6 +4,6 @@ namespace BLL.Interface
 {
     public interface IChargeRecordService : IBaseService<ChargeRecord>
     {
-        int Query(string licensePlateNumber);
+        ChargeRecord Query(string licensePlateNumber);
     }
 }

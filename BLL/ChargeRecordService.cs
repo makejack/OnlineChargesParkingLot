@@ -17,7 +17,7 @@ namespace BLL
             base.Dal = new ChargeRecordDAL();
         }
 
-        public int Query(string licensePlateNumber)
+        public ChargeRecord Query(string licensePlateNumber)
         {
             IChargeRecordDAL chargeRecordDAL = DAL.Container.Container.Resolve<IChargeRecordDAL>();
             return chargeRecordDAL.Query(licensePlateNumber);

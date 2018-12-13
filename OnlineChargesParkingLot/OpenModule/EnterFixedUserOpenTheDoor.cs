@@ -2,37 +2,67 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Camera;
 using Model;
+using OnlineChargesParkingLot.ViewModel;
 
 namespace OnlineChargesParkingLot.OpenModule
 {
-    public class EnterFixedUserOpenTheDoor : OpenOperating
+    public class EnterFixedUserOpenTheDoor : BaseOperating, IEnterDoor
     {
-        public override void Execute(OwnerInfo ownerInfo)
-        {
-            string userType = "临时车辆";
-            if (ownerInfo != null)
-            {
-                userType = ownerInfo.PlateType == 0 ? "月租车辆" : "固定车辆";
+        private Action<EnterVehicleInfo> PlateInfoCallBack { get; set; }
 
-                if (ownerInfo.UserType == 1) //黑名单
+        public EnterFixedUserOpenTheDoor(Action<EnterVehicleInfo> callback)
+        {
+            this.PlateInfoCallBack = callback;
+        }
+
+        public void Execute(IdentificationInfo iInfo, OwnerInfo ownerInfo)
+        {
+            string userName = string.Empty;
+            string userType = "临时车辆";
+            string vehicleType = VehicleTypeToStr(iInfo.LicensePlateType);
+            int day = 255;
+            try
+            {
+                if (ownerInfo != null)
                 {
-                    //不开门
-                    userType += "（黑名单）";
-                }
-                else if (ownerInfo.PlateType == 0) //月租车辆
-                {
-                    int day = SurplusDays(ownerInfo.StopTime);
-                    if (day == 0)
+                    if (ownerInfo.PlateType == 0) //月租车辆
                     {
-                        //过期
-                        userType += "过期";
+                        userType = "月租车辆";
+                        day = SurplusDays(ownerInfo.StopTime);
+                        if (day == 0)
+                        {
+                            //过期
+                            userType += "（过期）";
+                        }
+                        //开门
+                    }
+                    else if (ownerInfo.PlateType == 1)//固定车辆
+                    {
+                        userType = "固定车辆";
+                    }
+                    else if (ownerInfo.PlateType == 2) //定距卡车辆
+                    {
+                        userType = "定距卡车辆";
+                    }
+
+                    if (ownerInfo.UserType == 1) //黑名单
+                    {
+                        //不开门
+                        userType += "（黑名单）";
                     }
                 }
-
-                //开门
+                //不开门
             }
+            finally
+            {
+                EnterVehicleInfo enterInfo = (EnterVehicleInfo)iInfo;
+                enterInfo.UserName = userName;
+                enterInfo.UserType = userType;
 
+                PlateInfoCallBack(enterInfo);
+            }
         }
     }
 }

@@ -79,12 +79,12 @@ namespace DAL
             }
         }
 
-        public int Query(string licensePlateNumber)
+        public ChargeRecord Query(string licensePlateNumber)
         {
-            string sql = "SELECT VehicleType FROM CBTempChargeRecord WHERE  PlateNumber =@PlateNumber  ORDER BY ID DESC LIMIT 1";
+            string sql = "SELECT * FROM CBTempChargeRecord WHERE  PlateNumber =@PlateNumber  ORDER BY ID DESC LIMIT 1";
             using (IDbConnection connection = DbConnectionFactory.Create())
             {
-                return connection.Query<int>(sql, new { PlateNumber = licensePlateNumber }).FirstOrDefault();
+                return connection.Query<ChargeRecord>(sql, new { PlateNumber = licensePlateNumber }).FirstOrDefault();
             }
         }
     }
