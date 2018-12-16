@@ -8,7 +8,7 @@ namespace Model
     /// <summary>
     /// 对应数据中CBTempChargeRecord表
     /// </summary>
-    public class ChargeRecord
+    public class ChargesRecord
     {
         public int ID { get; set; }
 

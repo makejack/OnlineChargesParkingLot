@@ -21,8 +21,9 @@ namespace OnlineChargesParkingLot.OpenModule
         {
             string userName = string.Empty;
             string userType = "临时车辆";
-            string vehicleType = VehicleTypeToStr(iInfo.LicensePlateType);
+            //string vehicleType = VehicleTypeToStr(iInfo.LicensePlateType);
             int day = 255;
+            bool openTheDoor = true;
             try
             {
                 if (ownerInfo != null)
@@ -35,6 +36,8 @@ namespace OnlineChargesParkingLot.OpenModule
                         {
                             //过期
                             userType += "（过期）";
+
+                            openTheDoor = false;
                         }
                         //开门
                     }
@@ -51,9 +54,23 @@ namespace OnlineChargesParkingLot.OpenModule
                     {
                         //不开门
                         userType += "（黑名单）";
+
+                        openTheDoor = false;
                     }
                 }
-                //不开门
+                else
+                {
+                    openTheDoor = false;
+                }
+
+                if (openTheDoor)
+                {
+
+                }
+                else
+                {
+
+                }
             }
             finally
             {

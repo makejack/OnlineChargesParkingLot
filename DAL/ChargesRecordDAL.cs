@@ -10,9 +10,9 @@ using Model;
 
 namespace DAL
 {
-    public class ChargeRecordDAL : IChargeRecordDAL, IDependency
+    public class ChargesRecordDAL : IChargesRecordDAL, IDependency
     {
-        public int Add(ChargeRecord t)
+        public int Add(ChargesRecord t)
         {
             string sql = @"insert into CBTempChargeRecord(CardNumber
             ,PlateNumber
@@ -42,7 +42,7 @@ namespace DAL
             }
         }
 
-        public void Delete(ChargeRecord t)
+        public void Delete(ChargesRecord t)
         {
             string sql = "DELETE FROM CBTempChargeRecord WHERE ID = @ID ;";
             using (IDbConnection connection = DbConnectionFactory.Create())
@@ -51,16 +51,16 @@ namespace DAL
             }
         }
 
-        public IEnumerable<ChargeRecord> GetModels()
+        public IEnumerable<ChargesRecord> GetModels()
         {
             string sql = "SELECT * FROM CBTempChargeRecord ";
             using (IDbConnection connection = DbConnectionFactory.Create())
             {
-                return connection.Query<ChargeRecord>(sql).ToList();
+                return connection.Query<ChargesRecord>(sql).ToList();
             }
         }
 
-        public void Update(ChargeRecord t)
+        public void Update(ChargesRecord t)
         {
             string sql = @"UPDATE CBTempChargeRecord SET CardNumber= @CardNumber
             ,PlateNumber=@PlateNumber
@@ -79,12 +79,21 @@ namespace DAL
             }
         }
 
-        public ChargeRecord Query(string licensePlateNumber)
+        public ChargesRecord Query(string licensePlateNumber)
         {
             string sql = "SELECT * FROM CBTempChargeRecord WHERE  PlateNumber =@PlateNumber  ORDER BY ID DESC LIMIT 1";
             using (IDbConnection connection = DbConnectionFactory.Create())
             {
-                return connection.Query<ChargeRecord>(sql, new { PlateNumber = licensePlateNumber }).FirstOrDefault();
+                return connection.Query<ChargesRecord>(sql, new { PlateNumber = licensePlateNumber }).FirstOrDefault();
+            }
+        }
+
+        public IEnumerable<ChargesRecord> Query(string licensePlateNumber, DateTime now)
+        {
+            string sql = "SELECT * FROM CBTempChargeRecord WHERE PlateNumber=@PlateNumber AND ExportTime > @ExportTime ";
+            using (IDbConnection connection = DbConnectionFactory.Create())
+            {
+                return connection.Query<ChargesRecord>(sql, new { PlateNumber = licensePlateNumber, ExportTime = now }).ToList();
             }
         }
     }

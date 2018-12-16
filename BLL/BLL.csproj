@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="AdminInfoService.cs" />
     <Compile Include="BaseService.cs" />
-    <Compile Include="ChargeRecordService.cs" />
+    <Compile Include="ChargesRecordService.cs" />
     <Compile Include="EnteranceRecordService.cs" />
     <Compile Include="Interface\IOwnerInfoService.cs" />
     <Compile Include="OwnerDelayRecordService.cs" />
@@ -53,7 +53,7 @@
     <Compile Include="Container\Container.cs" />
     <Compile Include="Interface\IAdminInfoService.cs" />
     <Compile Include="Interface\IBaseService.cs" />
-    <Compile Include="Interface\IChargeRecordService.cs" />
+    <Compile Include="Interface\IChargesRecordService.cs" />
     <Compile Include="Interface\IDependency.cs" />
     <Compile Include="Interface\IEnteranceRecordService.cs" />
     <Compile Include="Interface\IOwnerDelayRecordService.cs" />

@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminInfo.cs" />
-    <Compile Include="ChargeRecord.cs" />
+    <Compile Include="ChargesRecord.cs" />
     <Compile Include="EnteranceRecord.cs" />
     <Compile Include="OwnerDelayRecord.cs" />
     <Compile Include="OwnerInfo.cs" />

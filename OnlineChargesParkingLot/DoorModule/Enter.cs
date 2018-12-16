@@ -11,24 +11,20 @@ namespace OnlineChargesParkingLot.DoorModule
 {
     public class Enter : Door, IDoor
     {
-        private IEnterDoor OpenOperating { get; set; }
-
-        private ParkingLotInfo m_ParkingLotInfo;
+        private IEnterDoor EnterDoor { get; set; }
 
         public Enter(ParkingLotInfo parkingLotInfo, Action<EnterVehicleInfo> callback)
         {
-            m_ParkingLotInfo = parkingLotInfo;
-
             switch (parkingLotInfo.OpenMode)
             {
                 case 0: //识别即开闸
-                    OpenOperating = new EnterIdentificationOpening(callback);
+                    EnterDoor = new EnterIdentificationOpening(callback);
                     break;
                 case 1: //收费开闸
-                    OpenOperating = new EnterChargesOpenTheDoor(callback);
+                    EnterDoor = new EnterChargesOpenTheDoor(callback);
                     break;
                 case 2: //固定用户开闸
-                    OpenOperating = new EnterFixedUserOpenTheDoor(callback);
+                    EnterDoor = new EnterFixedUserOpenTheDoor(callback);
                     break;
             }
         }
@@ -44,7 +40,7 @@ namespace OnlineChargesParkingLot.DoorModule
             IEnteranceRecordService enteranceRecordService = BLL.Container.Container.Resolve<IEnteranceRecordService>();
             EnteranceRecord enteranceRecord = null;
             OwnerInfo ownerInfo = null;
-            ChargeRecord chargeRecord = null;
+            ChargesRecord chargeRecord = null;
             try
             {
                 if (iInfo.LicensePlateNumber != "ABCDEF")
@@ -55,57 +51,10 @@ namespace OnlineChargesParkingLot.DoorModule
                     ownerInfo = ownerInfoService.Query(iInfo.LicensePlateNumber);
 
                     //获取记录中的车辆类型 大车 小车 中车
-                    IChargeRecordService chargeRecordService = BLL.Container.Container.Resolve<IChargeRecordService>();
+                    IChargesRecordService chargeRecordService = BLL.Container.Container.Resolve<IChargesRecordService>();
                     chargeRecord = chargeRecordService.Query(iInfo.LicensePlateNumber);
                 }
-
-                string userName = string.Empty;
-                string userType = "临时车辆";
-                //string vehicleType = VehicleTypeToStr(iInfo.LicensePlateType);
-                int day = 255;
-                if (ownerInfo != null)
-                {
-                    if (ownerInfo.PlateType == 0) //月租车辆
-                    {
-                        userType = "月租车辆";
-                        day = SurplusDays(ownerInfo.StopTime);
-                        if (day == 0)
-                        {
-                            //过期
-                            userType += "（过期）";
-                        }
-                        //开门
-                    }
-                    else if (ownerInfo.PlateType == 1)//固定车辆
-                    {
-                        userType = "固定车辆";
-                    }
-                    else if (ownerInfo.PlateType == 2) //定距卡车辆
-                    {
-                        userType = "定距卡车辆";
-                    }
-
-                    if (ownerInfo.UserType == 1) //黑名单
-                    {
-                        //不开门
-                        userType += "（黑名单）";
-                    }
-                }
-
-                switch (m_ParkingLotInfo.OpenMode)
-                {
-                    case 0:
-
-                        break;
-                    case 1:
-
-                        break;
-                    case 2:
-
-                        break;
-                }
-
-                OpenOperating.Execute(iInfo, ownerInfo);
+                EnterDoor.Execute(iInfo, ownerInfo);
             }
             finally
             {

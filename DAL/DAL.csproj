@@ -55,7 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminInfoDAL.cs" />
-    <Compile Include="ChargeRecordDAL.cs" />
+    <Compile Include="ChargesRecordDAL.cs" />
     <Compile Include="Container\Container.cs" />
     <Compile Include="DbConnectionFactory.cs" />
     <Compile Include="Interface\IOwnerDelayRecordDAL.cs" />
@@ -65,7 +65,7 @@
     <Compile Include="ParkingLotInfoDAL.cs" />
     <Compile Include="Interface\IAdminInfoDAL.cs" />
     <Compile Include="Interface\IBaseDAL.cs" />
-    <Compile Include="Interface\IChargeRecordDAL.cs" />
+    <Compile Include="Interface\IChargesRecordDAL.cs" />
     <Compile Include="Interface\IDependency.cs" />
     <Compile Include="Interface\IEnteranceRecordDAL.cs" />
     <Compile Include="Interface\IParkingLotInfoDAL.cs" />
