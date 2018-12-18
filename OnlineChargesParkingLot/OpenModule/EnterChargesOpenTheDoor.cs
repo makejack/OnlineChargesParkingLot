@@ -56,14 +56,7 @@ namespace OnlineChargesParkingLot.OpenModule
             }
 
             //开门
-            if (openTheDoor)
-            {
-
-            }
-            else
-            {
-
-            }
+            OpenTheDoor(iInfo.LicensePlateNumber, iInfo.IdentificationTime, openTheDoor);
 
             EnterVehicleInfo enterInfo = (EnterVehicleInfo)iInfo;
             enterInfo.UserName = userName;

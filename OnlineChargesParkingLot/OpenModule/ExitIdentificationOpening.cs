@@ -49,14 +49,7 @@ namespace OnlineChargesParkingLot.OpenModule
                 }
             }
 
-            if (openTheDoor)
-            {
-
-            }
-            else
-            {
-
-            }
+            OpenTheDoor(iInfo.LicensePlateNumber, iInfo.IdentificationTime, openTheDoor);
 
             PlateInfoCallBack();
         }

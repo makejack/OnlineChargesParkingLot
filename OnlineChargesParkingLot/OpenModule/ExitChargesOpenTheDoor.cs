@@ -44,13 +44,15 @@ namespace OnlineChargesParkingLot.OpenModule
             else
             {
                 string userType = "临时车辆";
-                int day = 0;
+                int day = 255;
                 bool openTheDoor = true;
+                bool charges = true;
                 IChargesRecordService chargesRecordService = BLL.Container.Container.Resolve<IChargesRecordService>();
                 IEnumerable<ChargesRecord> chargesRecords = chargesRecordService.Query(iInfo.LicensePlateNumber, DateTime.Today);
                 double money = chargesRecords.Sum(e => e.ChargeAmount);
                 if (oInfo != null)
                 {
+                    charges = false;
                     if (oInfo.PlateType == 0) //月租车辆
                     {
                         userType = "月租车辆";
@@ -59,8 +61,7 @@ namespace OnlineChargesParkingLot.OpenModule
                         {
                             //过期
                             userType += "（过期）";
-
-                            openTheDoor = false;
+                            charges = true;
                         }
                         //开门
                     }
@@ -81,7 +82,16 @@ namespace OnlineChargesParkingLot.OpenModule
                         openTheDoor = false;
                     }
                 }
+
+                if (openTheDoor)
+                {
+                }
+                else
+                {
+
+                }
             }
+
             PlateInfoCallBack();
         }
     }

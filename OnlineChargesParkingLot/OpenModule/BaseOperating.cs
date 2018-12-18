@@ -25,6 +25,18 @@ namespace OnlineChargesParkingLot.OpenModule
             return (int)days;
         }
 
+        public virtual void OpenTheDoor(string licensePlateNumber, DateTime iTime, bool isOpen)
+        {
+            if (isOpen)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+
         public virtual string VehicleTypeToStr(LicensePlateTypes licensePlateType)
         {
             string strType = "未知";

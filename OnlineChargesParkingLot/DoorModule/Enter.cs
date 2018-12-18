@@ -17,13 +17,13 @@ namespace OnlineChargesParkingLot.DoorModule
         {
             switch (parkingLotInfo.OpenMode)
             {
-                case 0: //ʶ�𼴿�բ
+                case 0: //识别即开闸
                     EnterDoor = new EnterIdentificationOpening(callback);
                     break;
-                case 1: //�շѿ�բ
+                case 1: //收费开闸
                     EnterDoor = new EnterChargesOpenTheDoor(callback);
                     break;
-                case 2: //�̶��û���բ
+                case 2: //固定用户开闸
                     EnterDoor = new EnterFixedUserOpenTheDoor(callback);
                     break;
             }
@@ -46,11 +46,10 @@ namespace OnlineChargesParkingLot.DoorModule
                 if (iInfo.LicensePlateNumber != "ABCDEF")
                 {
                     enteranceRecord = enteranceRecordService.Query(iInfo.LicensePlateNumber);
-
+                    //获取车主信息
                     IOwnerInfoService ownerInfoService = BLL.Container.Container.Resolve<IOwnerInfoService>();
                     ownerInfo = ownerInfoService.Query(iInfo.LicensePlateNumber);
-
-                    //��ȡ��¼�еĳ������� �� С�� �г�
+                    //获取车辆记录中修改的车辆类型 大车 中车 小车
                     IChargesRecordService chargeRecordService = BLL.Container.Container.Resolve<IChargesRecordService>();
                     chargeRecord = chargeRecordService.Query(iInfo.LicensePlateNumber);
                 }

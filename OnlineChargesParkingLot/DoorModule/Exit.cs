@@ -42,6 +42,7 @@ namespace OnlineChargesParkingLot.DoorModule
             //获取车主信息
             IOwnerInfoService ownerInfoService = BLL.Container.Container.Resolve<IOwnerInfoService>();
             OwnerInfo ownerInfo = ownerInfoService.Query(iInfo.LicensePlateNumber);
+            
             ExitDoor.Execute(iInfo, enteranceRecord, ownerInfo);
         }
     }

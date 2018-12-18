@@ -45,7 +45,7 @@ namespace OnlineChargesParkingLot
             IParkingLotInfoService parkingLotInfoService = BLL.Container.Container.Resolve<IParkingLotInfoService>();
             m_ParkingLotInfo = parkingLotInfoService.GetModels().FirstOrDefault();
 
-            EnterDoor = new DoorModule.Enter(m_ParkingLotInfo, this.EnterInfoShow);
+            EnterDoor = new Enter(m_ParkingLotInfo, EnterInfoShow);
             ExitDoor = new Exit(m_ParkingLotInfo, ExitInfoShow);
 
             //初始化摄像机控制器
@@ -72,11 +72,14 @@ namespace OnlineChargesParkingLot
         {
             IdentificationInfo info = new IdentificationInfo(e.LicensePlateNumber, e.LicensePlateType, e.LicensePlateColor, e.PanoramaImage, e.VehicleImage, e.IdentificationTime);
             CameraParam cameraParam = m_CameraParams.Where(w => w.Ip == e.IP).FirstOrDefault();
-            IDoor door = cameraParam.Direction == Directions.Enter ? EnterDoor : ExitDoor;
-            door.Execute(info);
+            if (cameraParam != null)
+            {
+                IDoor door = cameraParam.Direction == Directions.Enter ? EnterDoor : ExitDoor;
+                door.Execute(info);
+            }
         }
 
-        private void EnterInfoShow(ViewModel.EnterVehicleInfo info)
+        private void EnterInfoShow(EnterVehicleInfo info)
         {
 
         }
