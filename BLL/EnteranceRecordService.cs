@@ -5,7 +5,8 @@ using DAL.Interface;
 
 namespace BLL
 {
-    public class EnteranceRecordService : BaseService<EnteranceRecord>, IEnteranceRecordService, IDependency
+    [DependencyRegister]
+    public class EnteranceRecordService : BaseService<EnteranceRecord>, IEnteranceRecordService
     {
         public override void SetDal()
         {

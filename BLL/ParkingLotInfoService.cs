@@ -6,7 +6,8 @@ using BLL.Interface;
 
 namespace BLL
 {
-    public class ParkingLotInfoService : BaseService<ParkingLotInfo>, IParkingLotInfoService, IDependency
+    [DependencyRegister]
+    public class ParkingLotInfoService : BaseService<ParkingLotInfo>, IParkingLotInfoService
     {
         public override void SetDal()
         {

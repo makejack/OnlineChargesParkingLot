@@ -31,10 +31,7 @@ namespace Camera.Devices
                 AnShiBaoSDK.IPCSDK_Register_Callback(CameraPlateReceivedCallBack);
             }
         }
-
-        public event FindCameraHandle FindCameraChange;
-        public event PlateReceivedHandle PlateReceivedChange;
-
+        
         public override void UnInit()
         {
             AnShiBaoSDK.IPCSDK_UnInit();

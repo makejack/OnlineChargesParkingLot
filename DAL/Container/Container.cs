@@ -32,11 +32,14 @@ namespace DAL.Container
         {
             ContainerBuilder builder = new ContainerBuilder();
 
-            Type baseType = typeof(IDependency);
-            List<Assembly> assemblis = AppDomain.CurrentDomain.GetAssemblies().ToList();
-            builder.RegisterAssemblyTypes(assemblis.ToArray()).Where(w => baseType.IsAssignableFrom(w) && w != baseType).AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<AdminInfoDAL>().As<IAdminInfoDAL>().InstancePerLifetimeScope();
+            builder.RegisterType<ChargesRecordDAL>().As<IChargesRecordDAL>().InstancePerLifetimeScope();
+            builder.RegisterType<EnteranceRecordDAL>().As<IEnteranceRecordDAL>().InstancePerLifetimeScope();
+            builder.RegisterType<OwnerDelayRecordDAL>().As<IOwnerDelayRecordDAL>().InstancePerLifetimeScope();
+            builder.RegisterType<OwnerInfoDAL>().As<IOwnerInfoDAL>().InstancePerLifetimeScope();
+            builder.RegisterType<ParkingLotInfoDAL>().As<IParkingLotInfoDAL>().InstancePerLifetimeScope();
 
-            builder.Build();
+            container = builder.Build();
         }
     }
 }

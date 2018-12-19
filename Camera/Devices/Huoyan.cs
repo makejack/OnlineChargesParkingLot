@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using System.Drawing;
 using System.IO;
 using LogHelper;
+using System.Threading.Tasks;
 
 namespace Camera.Devices
 {
@@ -73,7 +74,10 @@ namespace Camera.Devices
             if (CameraFindCameraCallBack == null)
             {
                 CameraFindCameraCallBack = FindCamera;
-                HuoYanSDK.VZLPRClient_StartFindDevice(CameraFindCameraCallBack, IntPtr.Zero);
+                Task.Factory.StartNew(() =>
+                {
+                    HuoYanSDK.VZLPRClient_StartFindDevice(CameraFindCameraCallBack, IntPtr.Zero);
+                });
             }
         }
 
@@ -118,7 +122,7 @@ namespace Camera.Devices
                             licensePlateColor = Color.Green;
                             break;
                     }
-                    
+
                     string pImagePath, vImagePath;
                     DateTime now = SetImagePath(strLicensePlateNumber, out pImagePath, out vImagePath);
 

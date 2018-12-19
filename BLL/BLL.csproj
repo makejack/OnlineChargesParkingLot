@@ -46,6 +46,7 @@
     <Compile Include="AdminInfoService.cs" />
     <Compile Include="BaseService.cs" />
     <Compile Include="ChargesRecordService.cs" />
+    <Compile Include="DependencyRegisterAttribute.cs" />
     <Compile Include="EnteranceRecordService.cs" />
     <Compile Include="Interface\IOwnerInfoService.cs" />
     <Compile Include="OwnerDelayRecordService.cs" />

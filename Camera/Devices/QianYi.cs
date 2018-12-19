@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.IO;
 using LogHelper;
+using System.Threading.Tasks;
 
 namespace Camera.Devices
 {
@@ -76,7 +77,10 @@ namespace Camera.Devices
             if (CameraFindCameraCallBack == null)
             {
                 CameraFindCameraCallBack = FindCamera;
-                QianYiSDK.Net_FindDevice(CameraFindCameraCallBack, IntPtr.Zero);
+                Task.Factory.StartNew(() =>
+                {
+                    QianYiSDK.Net_FindDevice(CameraFindCameraCallBack, IntPtr.Zero);
+                });
             }
         }
 

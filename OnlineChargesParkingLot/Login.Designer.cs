@@ -38,12 +38,14 @@
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.tbAccount = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnClose = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnClose);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.btnExit);
             this.panel2.Controls.Add(this.label2);
@@ -139,7 +141,7 @@
             this.tbAccount.Name = "tbAccount";
             this.tbAccount.Size = new System.Drawing.Size(200, 29);
             this.tbAccount.TabIndex = 7;
-            this.tbAccount.Text = "Account";
+            this.tbAccount.Text = "admin";
             this.tbAccount.Enter += new System.EventHandler(this.AccountText_Enter);
             this.tbAccount.Leave += new System.EventHandler(this.AccountText_Leave);
             // 
@@ -151,6 +153,20 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(300, 374);
             this.panel1.TabIndex = 1;
+            // 
+            // btnClose
+            // 
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("华文新魏", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnClose.Location = new System.Drawing.Point(244, 0);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(0);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(40, 32);
+            this.btnClose.TabIndex = 17;
+            this.btnClose.Text = "X";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.Exit_Click);
             // 
             // Login
             // 
@@ -169,7 +185,7 @@
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
-            this.Load +=  new System.EventHandler(this.Login_Load);
+            this.Load += new System.EventHandler(this.Login_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -187,6 +203,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label btnExit;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnClose;
     }
 }
 

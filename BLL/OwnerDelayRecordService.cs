@@ -5,7 +5,8 @@ using DAL;
 
 namespace BLL
 {
-    public class OwnerDelayRecordService : BaseService<OwnerDelayRecord>, IOwnerDelayRecordService, IDependency
+    [DependencyRegister]
+    public class OwnerDelayRecordService : BaseService<OwnerDelayRecord>, IOwnerDelayRecordService
     {
         public override void SetDal()
         {

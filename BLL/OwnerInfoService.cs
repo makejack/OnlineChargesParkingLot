@@ -3,9 +3,10 @@ using BLL.Interface;
 using DAL;
 using DAL.Interface;
 
-namespace BLL.Properties
+namespace BLL
 {
-    public class OwnerInfoService : BaseService<OwnerInfo>, IOwnerInfoService, IDependency
+    [DependencyRegister]
+    public class OwnerInfoService : BaseService<OwnerInfo>, IOwnerInfoService
     {
         public override void SetDal()
         {

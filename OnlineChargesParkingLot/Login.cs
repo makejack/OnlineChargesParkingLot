@@ -52,6 +52,7 @@ namespace OnlineChargesParkingLot
             {
                 tbPassword.Text = string.Empty;
                 tbPassword.ForeColor = Color.Black;
+                tbPassword.PasswordChar = '●';
             }
         }
 
@@ -61,6 +62,7 @@ namespace OnlineChargesParkingLot
             {
                 tbPassword.Text = "Password";
                 tbPassword.ForeColor = Color.Gray;
+                tbPassword.PasswordChar = '\0';
             }
         }
 
@@ -74,16 +76,25 @@ namespace OnlineChargesParkingLot
             string strAccount = tbAccount.Text;
             string strPassword = tbPassword.Text;
 
-            if (strAccount.Length == 0)
+            if (strPassword == "Password")
+            {
+                strPassword = string.Empty;
+            }
+
+            if (strAccount == "Account" || strAccount.Length == 0)
             {
                 MessageBox.Show("帐号不能为空", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            if (strPassword.Length == 0)
+            if (strAccount.ToUpper() != "ADMIN")
             {
-                MessageBox.Show("密码不能为空", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                if (strPassword.Length == 0)
+                {
+                    MessageBox.Show("密码不能为空", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
             }
+
             IAdminInfoService adminInfoService = BLL.Container.Container.Resolve<IAdminInfoService>();
             AdminInfo adminInfo = adminInfoService.Query(strAccount, strPassword);
             if (adminInfo == null)

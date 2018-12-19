@@ -53,10 +53,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChargesModule\ICharges.cs" />
+    <Compile Include="ControlExpansion\ButtonExpansion.cs" />
     <Compile Include="DoorModule\Door.cs" />
     <Compile Include="DoorModule\Enter.cs" />
     <Compile Include="DoorModule\Exit.cs" />
     <Compile Include="DoorModule\IDoor.cs" />
+    <Compile Include="Fonts\FontFactory.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +115,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\UnidreamLED.ttf" />
     <None Include="Resources\video_camera.png" />
   </ItemGroup>
   <ItemGroup>
@@ -139,8 +142,6 @@
       <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ChargesModule\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

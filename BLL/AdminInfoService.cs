@@ -7,7 +7,8 @@ using DAL.Interface;
 
 namespace BLL
 {
-    public class AdminInfoService : BaseService<AdminInfo>, IAdminInfoService, IDependency
+    [DependencyRegister]
+    public class AdminInfoService : BaseService<AdminInfo>, IAdminInfoService
     {
         public override void SetDal()
         {

@@ -10,7 +10,8 @@ using DAL;
 
 namespace BLL
 {
-    public class ChargesRecordService : BaseService<ChargesRecord>, IChargesRecordService, IDependency
+    [DependencyRegister]
+    public class ChargesRecordService : BaseService<ChargesRecord>, IChargesRecordService
     {
         public override void SetDal()
         {

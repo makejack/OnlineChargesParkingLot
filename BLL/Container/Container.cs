@@ -25,18 +25,21 @@ namespace BLL.Container
             {
                 throw ex;
             }
-           return container.Resolve<T>();
+            return container.Resolve<T>();
         }
 
         private static void Initailize()
         {
             ContainerBuilder builder = new ContainerBuilder();
-            Type baseType = typeof(IDependency);
 
-            IEnumerable<Assembly> assemblys = AppDomain.CurrentDomain.GetAssemblies().ToList();
-            builder.RegisterAssemblyTypes(assemblys.ToArray()).Where(w => baseType.IsAssignableFrom(w) && baseType != w).AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<AdminInfoService>().As<IAdminInfoService>().InstancePerLifetimeScope();
+            builder.RegisterType<ChargesRecordService>().As<IChargesRecordService>().InstancePerLifetimeScope();
+            builder.RegisterType<EnteranceRecordService>().As<IEnteranceRecordService>().InstancePerLifetimeScope();
+            builder.RegisterType<OwnerDelayRecordService>().As<IOwnerDelayRecordService>().InstancePerLifetimeScope();
+            builder.RegisterType<OwnerInfoService>().As<IOwnerInfoService>().InstancePerLifetimeScope();
+            builder.RegisterType<ParkingLotInfoService>().As<IParkingLotInfoService>().InstancePerLifetimeScope();
 
-            builder.Build();
+            container = builder.Build();
         }
     }
 }
